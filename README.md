@@ -2,7 +2,7 @@
 
 ### 1. Начать пользоваться:
   
-  :point_right: Click here [Notes](task-notes-misu0n8in-vikkyablaeva.vercel.app/) :point_left:
+  :point_right: Click here [Notes](https://task-notes.vercel.app/) :point_left:
 
 ### 2. Для разработчиков:
   
