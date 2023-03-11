@@ -1,10 +1,10 @@
-# Notes :star:
+# Notes
 
-### 1. Начать пользоваться: :smiley_cat:
+### 1. Начать пользоваться:
   
   :point_right: Click here [Notes](task-notes-misu0n8in-vikkyablaeva.vercel.app/) :point_left:
 
-### 2. Для разработчиков: :question:
+### 2. Для разработчиков:
   
 ```
 - git clone https://github.com/VikkyAblaeva/task-notes
