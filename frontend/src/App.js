@@ -129,11 +129,17 @@ const App = () => {
             <Alert key={note.id} variant='secondary'>
               <Container>
                 <Row>
-                  <Col sm={8}>
-                    <h4>
-                      {note.title}
-                    </h4>
-                  </Col>
+                  <h4>
+                    {note.title}
+                  </h4>
+                </Row>
+                <Row>
+                  <h5>
+                    {note.content}
+                  </h5>
+                </Row>
+                <Row>
+                  <Col sm={8}></Col>
                   <Col sm={2}>
                     <Button variant="success"
                     id={`edt${note.id}`}
@@ -151,11 +157,6 @@ const App = () => {
                       Удалить
                     </Button>{' '}
                   </Col>
-                </Row>
-                <Row>
-                  <h5>
-                    {note.content}
-                  </h5>
                 </Row>
               </Container>
             </Alert>
