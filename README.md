@@ -3,6 +3,9 @@
 ### 1. Начать пользоваться:
   
   :point_right: Click here [Notes](https://task-notes.vercel.app/) :point_left:
+  
+  Приложение работает для ПК и мобильных устройств
+  
 
 ### 2. Для разработчиков:
   
