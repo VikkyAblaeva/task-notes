@@ -9,4 +9,9 @@ const generateId = () => {
   return id;
 };
 
+const generateRandomNumber = (affirmations) => {
+  return Math.floor(Math.random() * affirmations.length);
+};
+
 export default generateId;
+export { generateRandomNumber };

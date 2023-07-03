@@ -8,8 +8,10 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import Overlay from 'react-bootstrap/Overlay';
 import Tooltip from 'react-bootstrap/Tooltip';
+import Badge from 'react-bootstrap/Badge';
 import './App.css';
-import generateId from './utils.js';
+import generateId, { generateRandomNumber } from './utils.js';
+import affirmations from './affirmations.js';
 
 const App = () => {
   const [notes, setNotes] = useState([]);
@@ -30,6 +32,12 @@ const App = () => {
   let [editId, setEditId] = useState('');
   let [contentNote, setContentNote] = useState('');
   const [isNewNote, setNewNote] = useState(false);
+  //let [affirmation, setAffirmation] = useState('');
+
+  //const handleAffirmation = () => {
+    //affirmation = affirmations[generateRandomNumber(affirmations)];
+    //setAffirmation(affirmation);
+  //}
 
   const handleClose = () => setShow(false);
 
@@ -98,25 +106,33 @@ const App = () => {
 
   return (
     <>
+      <Alert key='warning' variant='warning'>
+        <h6>
+          {
+            affirmations[generateRandomNumber(affirmations)]
+          }
+        </h6>
+      </Alert>
+
       <Alert key='primary' variant='primary'>
         <Container>
           <Row>
             <Col sm={6}>
               <h1>
-                Мои заметки
+                <Badge bg="primary">My Notes</Badge>
               </h1>
             </Col>
             <Col sm={3}>
-              <h4>
-                Всего заметок:{` ${count}`}
-              </h4>
+              <h3>
+                <Badge bg="secondary">Total Notes:<Badge bg="primary">{` ${count}`}</Badge></Badge>
+              </h3>
             </Col>
             <Col sm={3}>
               <Button
               size="lg"
               variant="primary"
               onClick={handleNewNote}>
-                Добавить
+                Add Note
               </Button>{' '}
             </Col>
           </Row>
@@ -126,12 +142,12 @@ const App = () => {
       {
         notes.length !== 0 && notes.map((note) => {
           return (
-            <Alert key={note.id} variant='secondary'>
+            <Alert key={note.id} variant='info'>
               <Container>
                 <Row>
-                  <h4>
-                    {note.title}
-                  </h4>
+                  <h2>
+                    <Badge bg="secondary">{note.title}</Badge>
+                  </h2>
                 </Row>
                 <Row>
                   <h5>
@@ -145,7 +161,7 @@ const App = () => {
                     id={`edt${note.id}`}
                     onClick={(e) => handleEditNote(e)}
                     >
-                      Редактировать
+                      Edit Note
                     </Button>{' '}
                   </Col>
                   <Col sm={2}>
@@ -154,7 +170,7 @@ const App = () => {
                     variant="outline-danger"
                     onClick={(e) => handleRemoveNote(e)}
                     >
-                      Удалить
+                      Delete Note
                     </Button>{' '}
                   </Col>
                 </Row>
@@ -166,15 +182,15 @@ const App = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Делаем что-то с заметкой</Modal.Title>
+          <Modal.Title>Doing something with a Note</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Название заметки</Form.Label>
+              <Form.Label>Name of the Note</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="Название заметки"
+                placeholder="Name of the Note"
                 autoFocus
                 value={titleNote}
                 onChange={(e) => handleTitleNote(e)}
@@ -184,7 +200,7 @@ const App = () => {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Содержимое заметки</Form.Label>
+              <Form.Label>Note Content</Form.Label>
               <Form.Control as="textarea" rows={3}
               value={contentNote}
               onChange={(e) => handleContentNote(e)}
@@ -194,15 +210,15 @@ const App = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Выйти
+            Exit
           </Button>
           <Button variant="primary" ref={target} onClick={handleSaveNote}>
-            Сохранить
+            Save
           </Button>
           <Overlay target={target.current} show={showToolip} placement="top">
             {(props) => (
               <Tooltip id="overlay-example" {...props}>
-                Что-то не заполнено
+                Something is not filled in
               </Tooltip>
             )}
       </Overlay>
