@@ -16,8 +16,11 @@ import affirmations from './affirmations.js';
 const App = () => {
   const [notes, setNotes] = useState([]);
   let [count, setCount] = useState(notes.length);
+  let [affirmation, setAffirmation] = useState('');
 
   useEffect(() => {
+    const newAffirmation = affirmations[generateRandomNumber(affirmations)];
+    setAffirmation(newAffirmation);
     const mountedNotes = JSON.parse(localStorage.getItem('notes'));
     if (mountedNotes) {
       setNotes(mountedNotes);
@@ -32,13 +35,7 @@ const App = () => {
   let [editId, setEditId] = useState('');
   let [contentNote, setContentNote] = useState('');
   const [isNewNote, setNewNote] = useState(false);
-  //let [affirmation, setAffirmation] = useState('');
-
-  //const handleAffirmation = () => {
-    //affirmation = affirmations[generateRandomNumber(affirmations)];
-    //setAffirmation(affirmation);
-  //}
-
+  
   const handleClose = () => setShow(false);
 
   const handleTitleNote = (e) => {
@@ -80,7 +77,8 @@ const App = () => {
     }
     const editedNotes = notes.map((note) => note.id === editId ? newNote : note);
     setNotes(editedNotes);
-    localStorage.setItem('notes', JSON.stringify(notes));
+    console.log(editedNotes);
+    localStorage.setItem('notes', JSON.stringify(editedNotes));
     setEditId('');
     setTitleNote('');
     setContentNote('');
@@ -108,9 +106,7 @@ const App = () => {
     <>
       <Alert key='warning' variant='warning'>
         <h6>
-          {
-            affirmations[generateRandomNumber(affirmations)]
-          }
+          {affirmation}
         </h6>
       </Alert>
 
